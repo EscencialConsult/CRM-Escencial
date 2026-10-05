@@ -60,7 +60,7 @@ export const HotContacts = () => {
           </Tooltip>
         </TooltipProvider>
       </div>
-      <Card className="py-0">
+      <Card className="themed-scrollbar py-0 md:max-h-[calc(100vh-12rem)] md:overflow-y-auto">
         <SimpleList<Contact>
           linkType="show"
           data={contactData}

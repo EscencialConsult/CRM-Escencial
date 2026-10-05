@@ -12,6 +12,7 @@ import { BulkExportButton } from "@/components/admin/bulk-export-button";
 import { CreateButton } from "@/components/admin/create-button";
 import { ExportButton } from "@/components/admin/export-button";
 import { List } from "@/components/admin/list";
+import { ListPagination } from "@/components/admin/list-pagination";
 import { SelectAllButton } from "@/components/admin/select-all-button";
 import { SortButton } from "@/components/admin/sort-button";
 import { Card } from "@/components/ui/card";
@@ -28,6 +29,7 @@ import {
   ContactListFilterSummary,
   ContactListFilter,
 } from "./ContactListFilter";
+import { ContactFilterPanel } from "./ContactFilterPanel";
 import { TopToolbar } from "../layout/TopToolbar";
 import { InfinitePagination } from "../misc/InfinitePagination";
 import MobileHeader from "../layout/MobileHeader";
@@ -45,6 +47,8 @@ export const ContactList = () => {
       perPage={25}
       sort={{ field: "last_seen", order: "DESC" }}
       exporter={exporter}
+      className="mt-4 mb-6"
+      pagination={null}
     >
       <ContactListLayoutDesktop />
     </List>
@@ -62,12 +66,13 @@ const ContactListLayoutDesktop = () => {
 
   return (
     <div className="flex flex-row gap-8">
-      <ContactListFilter />
-      <div className="w-full flex flex-col gap-4">
+      <div className="min-w-0 flex-1 flex flex-col gap-4">
         <Card className="py-0">
           <ContactListContent />
         </Card>
+        <ListPagination className="justify-center! flex-wrap pb-2" />
       </div>
+      <ContactFilterPanel />
       <BulkActionsToolbar>
         <ContactBulkActionButtons />
       </BulkActionsToolbar>

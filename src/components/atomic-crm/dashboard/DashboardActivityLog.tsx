@@ -23,7 +23,7 @@ export function DashboardActivityLog() {
       {isMobile ? (
         <ActivityLog pageSize={10} />
       ) : (
-        <Card className="mb-2 p-6">
+        <Card className="themed-scrollbar mb-2 p-6 md:max-h-[calc(100vh-12rem)] md:overflow-y-auto">
           <ActivityLog pageSize={10} />
         </Card>
       )}

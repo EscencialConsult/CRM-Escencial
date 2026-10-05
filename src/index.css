@@ -197,3 +197,19 @@ body {
     overscroll-behavior-y: none;
   }
 }
+
+/* Slim, theme-aware scrollbar for independently scrolling panels */
+.themed-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: var(--border) transparent;
+}
+.themed-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+.themed-scrollbar::-webkit-scrollbar-thumb {
+  border-radius: 9999px;
+  background: var(--border);
+}
+.themed-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: var(--muted-foreground);
+}

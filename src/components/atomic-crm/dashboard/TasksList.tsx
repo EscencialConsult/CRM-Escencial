@@ -20,7 +20,7 @@ export const TasksList = () => {
         </h2>
         <AddTask display="icon" selectContact />
       </div>
-      <Card className="p-4 mb-2">
+      <Card className="themed-scrollbar mb-2 p-4 md:max-h-[calc(100vh-12rem)] md:overflow-y-auto">
         <TasksListContent />
       </Card>
     </div>

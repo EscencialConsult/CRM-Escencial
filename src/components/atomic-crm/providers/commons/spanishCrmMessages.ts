@@ -49,8 +49,7 @@ export const spanishCrmMessages = {
       followed_by_you: "Seguida por ti",
       no_contacts: "Sin contactos",
       nb_contacts: "%{smart_count} contacto |||| %{smart_count} contactos",
-      nb_deals:
-        "%{smart_count} oportunidad |||| %{smart_count} oportunidades",
+      nb_deals: "%{smart_count} oportunidad |||| %{smart_count} oportunidades",
       sizes: {
         one_employee: "1 empleado",
         two_to_nine_employees: "2-9 empleados",
@@ -323,6 +322,9 @@ export const spanishCrmMessages = {
       actions: {
         postpone_next_week: "Posponer a la próxima semana",
         postpone_tomorrow: "Posponer a mañana",
+        reassign: "Reasignar a",
+        complete: "Completar",
+        reopen: "Reabrir",
         title: "acciones de la tarea",
       },
       added: "Tarea añadida",
@@ -344,9 +346,41 @@ export const spanishCrmMessages = {
         today: "Hoy",
         tomorrow: "Mañana",
         with_pending: "Con tareas pendientes",
+        done: "Completadas",
+        search: "Buscar tareas, contactos, empresas…",
+        status_pending: "Pendientes",
+        status_overdue: "Vencidas",
+        status_done: "Completadas",
+        status_all: "Todos los estados",
+        mine: "Mis tareas",
+        everyone: "Todos",
+        all_types: "Todos los tipos",
+        no_results: "Ninguna tarea coincide con estos filtros.",
       },
       regarding_contact: "(Re: %{name})",
       updated: "Tarea actualizada",
+      completed: "Tarea marcada como completada",
+      reopened: "Tarea reabierta",
+      views: { list: "Lista", calendar: "Calendario" },
+      calendar: { today: "Hoy" },
+      bulk: {
+        selected:
+          "%{smart_count} seleccionada |||| %{smart_count} seleccionadas",
+        select: "Seleccionar tarea",
+        select_all: "Seleccionar todas",
+        clear: "Limpiar selección",
+        postpone: "Posponer",
+        completed:
+          "%{smart_count} tarea completada |||| %{smart_count} tareas completadas",
+        reopened:
+          "%{smart_count} tarea reabierta |||| %{smart_count} tareas reabiertas",
+        postponed:
+          "%{smart_count} tarea pospuesta |||| %{smart_count} tareas pospuestas",
+        reassigned:
+          "%{smart_count} tarea reasignada |||| %{smart_count} tareas reasignadas",
+        deleted:
+          "%{smart_count} tarea eliminada |||| %{smart_count} tareas eliminadas",
+      },
     },
     tags: {
       name: "Etiqueta |||| Etiquetas",
@@ -389,6 +423,8 @@ export const spanishCrmMessages = {
     },
     common: {
       account_manager: "Responsable de cuenta",
+      filters: "Filtros",
+      clear_filters: "Limpiar",
       activity: "Actividad",
       added: "añadió",
       details: "Detalles",
@@ -455,7 +491,8 @@ export const spanishCrmMessages = {
     },
     image_editor: {
       change: "Cambiar",
-      drop_hint: "Suelta un archivo para subirlo, o haz clic para seleccionarlo.",
+      drop_hint:
+        "Suelta un archivo para subirlo, o haz clic para seleccionarlo.",
       editable_content: "Contenido editable",
       title: "Subir y redimensionar imagen",
       update_image: "Actualizar imagen",
@@ -480,8 +517,7 @@ export const spanishCrmMessages = {
         complete: "Importación completada.",
         failed: "Fallidos",
         imported: "Importados",
-        in_progress:
-          "Importación en curso, no abandones esta página.",
+        in_progress: "Importación en curso, no abandones esta página.",
         some_failed: "Algunos registros no se importaron.",
         table_caption: "Estado de la importación",
       },
@@ -537,6 +573,9 @@ export const spanishCrmMessages = {
     language: "Idioma",
     navigation: {
       label: "Navegación del CRM",
+    },
+    sidebar: {
+      toggle: "Mostrar / ocultar menú",
     },
     profile: {
       add_secondary_email: "Añadir un correo",

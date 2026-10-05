@@ -324,6 +324,9 @@ export const frenchCrmMessages = {
       actions: {
         postpone_next_week: "Reporté à la semaine prochaine",
         postpone_tomorrow: "Reporter à demain",
+        reassign: "Réassigner à",
+        complete: "Terminer",
+        reopen: "Rouvrir",
         title: "Actions de tâche",
       },
       added: "Tâche ajoutée",
@@ -345,9 +348,41 @@ export const frenchCrmMessages = {
         today: "Aujourd'hui",
         tomorrow: "Demain",
         with_pending: "Avec des tâches en attente",
+        done: "Terminées",
+        search: "Rechercher tâches, contacts, entreprises…",
+        status_pending: "En attente",
+        status_overdue: "En retard",
+        status_done: "Terminées",
+        status_all: "Tous les statuts",
+        mine: "Mes tâches",
+        everyone: "Tout le monde",
+        all_types: "Tous les types",
+        no_results: "Aucune tâche ne correspond à ces filtres.",
       },
       regarding_contact: "(Concernant : %{name})",
       updated: "Tâche mise à jour",
+      completed: "Tâche marquée comme terminée",
+      reopened: "Tâche rouverte",
+      views: { list: "Liste", calendar: "Calendrier" },
+      calendar: { today: "Aujourd'hui" },
+      bulk: {
+        selected:
+          "%{smart_count} sélectionnée |||| %{smart_count} sélectionnées",
+        select: "Sélectionner la tâche",
+        select_all: "Tout sélectionner",
+        clear: "Effacer la sélection",
+        postpone: "Reporter",
+        completed:
+          "%{smart_count} tâche terminée |||| %{smart_count} tâches terminées",
+        reopened:
+          "%{smart_count} tâche rouverte |||| %{smart_count} tâches rouvertes",
+        postponed:
+          "%{smart_count} tâche reportée |||| %{smart_count} tâches reportées",
+        reassigned:
+          "%{smart_count} tâche réassignée |||| %{smart_count} tâches réassignées",
+        deleted:
+          "%{smart_count} tâche supprimée |||| %{smart_count} tâches supprimées",
+      },
     },
     tags: {
       name: "Étiquette |||| Étiquettes",
@@ -390,6 +425,8 @@ export const frenchCrmMessages = {
     },
     common: {
       account_manager: "Responsable de compte",
+      filters: "Filtres",
+      clear_filters: "Effacer",
       activity: "Activité",
       added: "ajoutée",
       details: "Détails",
@@ -539,6 +576,9 @@ export const frenchCrmMessages = {
     language: "Langue",
     navigation: {
       label: "Navigation CRM",
+    },
+    sidebar: {
+      toggle: "Afficher / masquer le menu",
     },
     profile: {
       add_secondary_email: "Ajouter un e-mail",

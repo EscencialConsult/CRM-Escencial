@@ -1,67 +1,47 @@
 import { Building, Truck, Users } from "lucide-react";
-import { FilterLiveForm, useGetIdentity, useTranslate } from "ra-core";
-import { ToggleFilterButton } from "@/components/admin/toggle-filter-button";
-import { SearchInput } from "@/components/admin/search-input";
+import { useTranslate } from "ra-core";
 
-import { FilterCategory } from "../filters/FilterCategory";
+import { CheckboxFilterCategory } from "../filters/CheckboxFilterCategory";
+import { FilterPanel } from "../filters/FilterPanel";
 import { useConfigurationContext } from "../root/ConfigurationContext";
-import { AccountManagerFilter } from "../sales/AccountManagerInput";
+import { useSalesFilterOptions } from "../sales/useSalesFilterOptions";
 import { getTranslatedCompanySizeLabel } from "./getTranslatedCompanySizeLabel";
 import { sizes } from "./sizes";
 
 export const CompanyListFilter = () => {
-  const { identity } = useGetIdentity();
   const { companySectors } = useConfigurationContext();
   const translate = useTranslate();
-  const translatedSizes = sizes.map((size) => ({
-    ...size,
-    name: getTranslatedCompanySizeLabel(size, translate),
+  const salesOptions = useSalesFilterOptions();
+
+  const sizeOptions = sizes.map((size) => ({
+    value: size.id,
+    label: getTranslatedCompanySizeLabel(size, translate),
   }));
+  const sectorOptions = companySectors.map((sector) => ({
+    value: sector.value,
+    label: sector.label,
+  }));
+
   return (
-    <div className="w-52 min-w-52 flex flex-col gap-8">
-      <FilterLiveForm>
-        <SearchInput source="q" />
-      </FilterLiveForm>
-
-      <FilterCategory
-        icon={<Building className="h-4 w-4" />}
+    <FilterPanel>
+      <CheckboxFilterCategory
+        icon={<Building className="size-3.5" />}
         label="resources.companies.fields.size"
-      >
-        {translatedSizes.map((size) => (
-          <ToggleFilterButton
-            className="w-full justify-between"
-            label={size.name}
-            key={size.name}
-            value={{ size: size.id }}
-          />
-        ))}
-      </FilterCategory>
-
-      <FilterCategory
-        icon={<Truck className="h-4 w-4" />}
+        source="size"
+        options={sizeOptions}
+      />
+      <CheckboxFilterCategory
+        icon={<Truck className="size-3.5" />}
         label="resources.companies.fields.sector"
-      >
-        {companySectors.map((sector) => (
-          <ToggleFilterButton
-            className="w-full justify-between"
-            label={sector.label}
-            key={sector.value}
-            value={{ sector: sector.value }}
-          />
-        ))}
-      </FilterCategory>
-
-      <FilterCategory
-        icon={<Users className="h-4 w-4" />}
+        source="sector"
+        options={sectorOptions}
+      />
+      <CheckboxFilterCategory
+        icon={<Users className="size-3.5" />}
         label="resources.companies.fields.sales_id"
-      >
-        <ToggleFilterButton
-          className="w-full justify-between"
-          label={translate("crm.common.me")}
-          value={{ sales_id: identity?.id }}
-        />
-        <AccountManagerFilter className="w-full justify-between" />
-      </FilterCategory>
-    </div>
+        source="sales_id"
+        options={salesOptions}
+      />
+    </FilterPanel>
   );
 };

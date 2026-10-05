@@ -20,7 +20,8 @@ export const CompanyList = () => {
       perPage={25}
       sort={{ field: "name", order: "ASC" }}
       actions={<CompanyListActions />}
-      pagination={<ListPagination rowsPerPageOptions={[10, 25, 50, 100]} />}
+      className="mt-4 mb-6"
+      pagination={null}
     >
       <CompanyListLayout />
     </List>
@@ -36,10 +37,14 @@ const CompanyListLayout = () => {
 
   return (
     <div className="w-full flex flex-row gap-8">
-      <CompanyListFilter />
-      <div className="flex flex-col flex-1 gap-4">
+      <div className="flex flex-col flex-1 min-w-0 gap-4">
         <ImageList />
+        <ListPagination
+          rowsPerPageOptions={[10, 25, 50, 100]}
+          className="justify-center! flex-wrap pb-2"
+        />
       </div>
+      <CompanyListFilter />
     </div>
   );
 };

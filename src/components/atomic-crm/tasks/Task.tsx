@@ -1,5 +1,5 @@
 import { useQueryClient } from "@tanstack/react-query";
-import { MoreVertical } from "lucide-react";
+import { Check, MoreVertical, RotateCcw } from "lucide-react";
 import {
   useDeleteWithUndoController,
   useGetRecordRepresentation,
@@ -16,11 +16,14 @@ import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
+  DropdownMenuSub,
+  DropdownMenuSubContent,
+  DropdownMenuSubTrigger,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 
 import { useConfigurationContext } from "../root/ConfigurationContext";
-import type { Contact, Task as TData } from "../types";
+import type { Contact, Sale, Task as TData } from "../types";
 import { TaskEdit } from "./TaskEdit";
 import { TaskEditSheet } from "./TaskEditSheet";
 import { useIsMobile } from "@/hooks/use-mobile";
@@ -28,9 +31,18 @@ import { useIsMobile } from "@/hooks/use-mobile";
 export const Task = ({
   task,
   showContact,
+  companyName,
+  assigneeName,
+  salesOptions,
+  selection,
 }: {
   task: TData;
   showContact?: boolean;
+  companyName?: string;
+  assigneeName?: string;
+  salesOptions?: Sale[];
+  /** When set, the checkbox selects the task for bulk actions and a separate button completes it. */
+  selection?: { selected: boolean; onChange: (selected: boolean) => void };
 }) => {
   const isMobile = useIsMobile();
   const { taskTypes } = useConfigurationContext();
@@ -73,6 +85,28 @@ export const Task = ({
     });
   };
 
+  const handleToggleDone = () => {
+    const isCompleting = !task.done_date;
+    update(
+      "tasks",
+      {
+        id: task.id,
+        data: { done_date: isCompleting ? new Date().toISOString() : null },
+        previousData: task,
+      },
+      {
+        mutationMode: "undoable",
+        onSuccess: () =>
+          notify(
+            isCompleting
+              ? "resources.tasks.completed"
+              : "resources.tasks.reopened",
+            { type: "info", undoable: true },
+          ),
+      },
+    );
+  };
+
   useEffect(() => {
     // We do not want to invalidate the query when a tack is checked or unchecked
     if (
@@ -93,15 +127,27 @@ export const Task = ({
       <div className="flex items-start justify-between">
         <div
           className="flex items-start gap-2 flex-1"
-          onClick={isMobile ? handleCheck() : undefined}
+          onClick={isMobile && !selection ? handleCheck() : undefined}
         >
-          <Checkbox
-            id={labelId}
-            checked={!!task.done_date}
-            onCheckedChange={handleCheck()}
-            disabled={isUpdatePending}
-            className="mt-1"
-          />
+          {selection ? (
+            <Checkbox
+              id={labelId}
+              checked={selection.selected}
+              onCheckedChange={(checked) =>
+                selection.onChange(checked === true)
+              }
+              aria-label={translate("resources.tasks.bulk.select")}
+              className="mt-1"
+            />
+          ) : (
+            <Checkbox
+              id={labelId}
+              checked={!!task.done_date}
+              onCheckedChange={handleCheck()}
+              disabled={isUpdatePending}
+              className="mt-1"
+            />
+          )}
           <div className={`flex-grow ${task.done_date ? "line-through" : ""}`}>
             <div className="text-sm">
               {task.type && task.type !== "none" && (
@@ -145,10 +191,27 @@ export const Task = ({
                   }}
                 />
               )}
+              {companyName && <> · {companyName}</>}
+              {assigneeName && <> · {assigneeName}</>}
             </div>
           </div>
         </div>
 
+        {selection && (
+          <Button
+            variant="outline"
+            size="sm"
+            className="mr-1 h-7 cursor-pointer"
+            onClick={handleToggleDone}
+          >
+            {task.done_date ? <RotateCcw /> : <Check />}
+            {translate(
+              task.done_date
+                ? "resources.tasks.actions.reopen"
+                : "resources.tasks.actions.complete",
+            )}
+          </Button>
+        )}
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button
@@ -193,6 +256,32 @@ export const Task = ({
             >
               {translate("resources.tasks.actions.postpone_next_week")}
             </DropdownMenuItem>
+            {salesOptions && salesOptions.length > 0 && (
+              <DropdownMenuSub>
+                <DropdownMenuSubTrigger className="cursor-pointer h-8 px-2 text-sm">
+                  {translate("resources.tasks.actions.reassign")}
+                </DropdownMenuSubTrigger>
+                <DropdownMenuSubContent>
+                  {salesOptions
+                    .filter((sale) => sale.id !== task.sales_id)
+                    .map((sale) => (
+                      <DropdownMenuItem
+                        key={sale.id}
+                        className="cursor-pointer"
+                        onClick={() =>
+                          update("tasks", {
+                            id: task.id,
+                            data: { sales_id: sale.id },
+                            previousData: task,
+                          })
+                        }
+                      >
+                        {sale.first_name} {sale.last_name}
+                      </DropdownMenuItem>
+                    ))}
+                </DropdownMenuSubContent>
+              </DropdownMenuSub>
+            )}
             <DropdownMenuItem
               className="cursor-pointer h-12 md:h-8 px-4 md:px-2 text-base md:text-sm"
               onClick={handleEdit}

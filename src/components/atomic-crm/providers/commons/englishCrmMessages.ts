@@ -319,6 +319,9 @@ export const englishCrmMessages = {
       actions: {
         postpone_next_week: "Postpone to next week",
         postpone_tomorrow: "Postpone to tomorrow",
+        reassign: "Reassign to",
+        complete: "Complete",
+        reopen: "Reopen",
         title: "task actions",
       },
       added: "Task added",
@@ -340,9 +343,40 @@ export const englishCrmMessages = {
         today: "Today",
         tomorrow: "Tomorrow",
         with_pending: "With pending tasks",
+        done: "Completed",
+        search: "Search tasks, contacts, companies…",
+        status_pending: "Pending",
+        status_overdue: "Overdue",
+        status_done: "Completed",
+        status_all: "All statuses",
+        mine: "My tasks",
+        everyone: "Everyone",
+        all_types: "All types",
+        no_results: "No tasks match these filters.",
       },
       regarding_contact: "(Re: %{name})",
       updated: "Task updated",
+      completed: "Task marked as completed",
+      reopened: "Task reopened",
+      views: { list: "List", calendar: "Calendar" },
+      calendar: { today: "Today" },
+      bulk: {
+        selected: "%{smart_count} selected",
+        select: "Select task",
+        select_all: "Select all",
+        clear: "Clear selection",
+        postpone: "Postpone",
+        completed:
+          "%{smart_count} task completed |||| %{smart_count} tasks completed",
+        reopened:
+          "%{smart_count} task reopened |||| %{smart_count} tasks reopened",
+        postponed:
+          "%{smart_count} task postponed |||| %{smart_count} tasks postponed",
+        reassigned:
+          "%{smart_count} task reassigned |||| %{smart_count} tasks reassigned",
+        deleted:
+          "%{smart_count} task deleted |||| %{smart_count} tasks deleted",
+      },
     },
     tags: {
       name: "Tag |||| Tags",
@@ -385,6 +419,8 @@ export const englishCrmMessages = {
     },
     common: {
       account_manager: "Account manager",
+      filters: "Filters",
+      clear_filters: "Clear",
       activity: "Activity",
       added: "added",
       details: "Details",
@@ -532,6 +568,9 @@ export const englishCrmMessages = {
     language: "Language",
     navigation: {
       label: "CRM navigation",
+    },
+    sidebar: {
+      toggle: "Show / hide menu",
     },
     profile: {
       add_secondary_email: "Add an email",
