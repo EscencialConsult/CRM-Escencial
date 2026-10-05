@@ -1,0 +1,3 @@
+name,company,category,stage,amount,expected_closing_date,description
+New website,Acme,website-design,opportunity,12000,2026-09-30,Redesign of the public website
+Print campaign,Globex,print-project,proposal-sent,4500,2026-10-15,
